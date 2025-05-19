@@ -3,7 +3,7 @@ package com.uptc.frw.fabricweb.model;
 import java.util.Date;
 
 public class Person {
-    private int id;
+    private long id;
     private String names;
     private String lastnames;
     private Date birthdate;
@@ -14,7 +14,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id, String names, String lastnames, Date birthdate, String address, String phone, String emergencyContact) {
+    public Person(long id, String names, String lastnames, Date birthdate, String address, String phone, String emergencyContact) {
         this.id = id;
         this.names = names;
         this.lastnames = lastnames;
@@ -24,11 +24,11 @@ public class Person {
         this.emergencyContact = emergencyContact;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
