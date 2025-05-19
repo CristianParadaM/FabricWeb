@@ -1,9 +1,21 @@
 package com.uptc.frw.fabricweb.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "SALES_DETAILS")
 public class SaleDetail {
+    @Id
+    @Column(name = "ID_SALE")
     private long productId;
+    @Column(name = "ID_PRODUCT")
     private long saleId;
+    @Column(name = "QUANTITY")
     private int quantity;
+    @Column(name = "PRICE")
     private double price;
 
     public SaleDetail() {
