@@ -1,9 +1,27 @@
 package com.uptc.frw.fabricweb.model;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "SKILLS")
 public class Skill {
+    @Id
+    @Column(name = "ID_SKILL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "NAME_SKILL")
     private String name;
+    @Column(name = "DESCRIPTION_SKILL")
     private String description;
+    @ManyToMany
+    @JoinTable(
+            name="PERSONS_SKILLS",
+            joinColumns = @JoinColumn(name="ID_SKILL"),
+            inverseJoinColumns =@JoinColumn(name = "ID_PERSONA")
+    )
+    private List<Person> personSList;
 
     public Skill() {}
 
@@ -35,6 +53,14 @@ public class Skill {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Person> getPersonSList() {
+        return personSList;
+    }
+
+    public void setPersonSList(List<Person> personSList) {
+        this.personSList = personSList;
     }
 
     @Override

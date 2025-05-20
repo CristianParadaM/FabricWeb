@@ -1,8 +1,20 @@
 package com.uptc.frw.fabricweb.model;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "MATERIALS")
 public class Material {
+    @Id
+    @Column(name = "ID_MATERIAL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "NAME")
     private String name;
+    @OneToMany(mappedBy = "material")
+    private List<ProductType> productTypes;
 
     public Material() {}
 
@@ -25,6 +37,14 @@ public class Material {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ProductType> getProductTypes() {
+        return productTypes;
+    }
+
+    public void setProductTypes(List<ProductType> productTypes) {
+        this.productTypes = productTypes;
     }
 
     @Override

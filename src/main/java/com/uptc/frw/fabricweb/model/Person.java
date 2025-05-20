@@ -1,15 +1,35 @@
 package com.uptc.frw.fabricweb.model;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "PERSONS")
 public class Person {
+    @Id
+    @Column(name = "ID_PERSON")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "NAMES")
     private String names;
+    @Column(name = "LASTNAMES")
     private String lastnames;
+    @Column(name = "BIRTHDATE")
     private Date birthdate;
+    @Column(name = "ADDRESS")
     private String address;
+    @Column(name = "PHONE")
     private String phone;
+    @Column(name = "EMERGENCY_CONTACT_NAME")
     private String emergencyContact;
+    @ManyToMany(mappedBy = "personSList" , cascade = CascadeType.PERSIST)
+    private List<Skill> skillList;
+    @ManyToMany(mappedBy = "personMList" , cascade = CascadeType.PERSIST)
+    private List<Machine> machinesList;
+    @OneToMany(mappedBy = "")
+    private List<Sale> salesList;
 
     public Person() {
     }
@@ -78,6 +98,30 @@ public class Person {
 
     public void setEmergencyContact(String emergencyContact) {
         this.emergencyContact = emergencyContact;
+    }
+
+    public List<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
+    }
+
+    public List<Machine> getMachinesList() {
+        return machinesList;
+    }
+
+    public void setMachinesList(List<Machine> machinesList) {
+        this.machinesList = machinesList;
+    }
+
+    public List<Sale> getSalesList() {
+        return salesList;
+    }
+
+    public void setSalesList(List<Sale> salesList) {
+        this.salesList = salesList;
     }
 
     @Override
