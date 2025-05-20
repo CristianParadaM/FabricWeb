@@ -28,7 +28,7 @@ public class Person {
     private List<Skill> skillList;
     @ManyToMany(mappedBy = "personMList" , cascade = CascadeType.PERSIST)
     private List<Machine> machinesList;
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "", cascade = CascadeType.REMOVE)
     private List<Sale> salesList;
 
     public Person() {

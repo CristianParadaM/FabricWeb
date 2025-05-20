@@ -19,7 +19,7 @@ public class ProductType {
     @Column(name = "ID_MATERIAL", insertable = false, updatable = false)
     private long materialID;
     @JsonIgnore
-    @OneToMany(mappedBy = "productType")
+    @OneToMany(mappedBy = "productType", cascade = CascadeType.REMOVE)
     private List<Product> productList;
     @ManyToOne
     @JsonIgnore

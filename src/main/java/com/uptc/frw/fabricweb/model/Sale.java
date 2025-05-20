@@ -25,7 +25,7 @@ public class Sale {
     @JoinColumn(name = "ID_PERSON")
     @JsonIgnore
     private Person person;
-    @OneToMany(mappedBy = "sale")
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<SaleDetail> saleDetails;
 

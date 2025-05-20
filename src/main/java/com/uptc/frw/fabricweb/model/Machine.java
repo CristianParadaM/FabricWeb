@@ -31,7 +31,7 @@ public class Machine {
             inverseJoinColumns =@JoinColumn(name = "ID_PRODUCT")
     )
     private List<Product> productList ;
-    @OneToMany(mappedBy = "machine")
+    @OneToMany(mappedBy = "machine", cascade = CascadeType.REMOVE)
     private List<ProductType> productTypes;
 
     public Machine(long numberSerie, String mark, String model, Date purchaseDate) {

@@ -13,7 +13,7 @@ public class Material {
     private long id;
     @Column(name = "NAME")
     private String name;
-    @OneToMany(mappedBy = "material")
+    @OneToMany(mappedBy = "material", cascade = CascadeType.REMOVE)
     private List<ProductType> productTypes;
 
     public Material() {}
