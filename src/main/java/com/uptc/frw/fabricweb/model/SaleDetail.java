@@ -1,52 +1,45 @@
 package com.uptc.frw.fabricweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uptc.frw.fabricweb.model.key.SaleDetailKey;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SALES_DETAILS")
-@IdClass(SaleDetailKey.class)
 public class SaleDetail {
-    @Id
-    @Column(name = "ID_SALE", insertable = false, updatable = false)
-    private long saleId;
-    @Column(name = "ID_PRODUCT", insertable = false, updatable = false)
-    private long productId;
+
+    @EmbeddedId
+    private SaleDetailKey id;
+
     @Column(name = "QUANTITY")
     private int quantity;
     @Column(name = "PRICE")
     private double price;
     @ManyToOne
+    @MapsId("saleId")
     @JoinColumn(name = "ID_SALE")
+    @JsonIgnore
     private Sale sale;
     @ManyToOne
+    @MapsId("productId")
     @JoinColumn(name = "ID_PRODUCT")
+    @JsonIgnore
     private Product product;
 
     public SaleDetail() {
     }
 
-    public SaleDetail(long productId, long saleId, int quantity, double price) {
-        this.productId = productId;
-        this.saleId = saleId;
+    public SaleDetail(int quantity, double price) {
         this.quantity = quantity;
         this.price = price;
     }
 
-    public long getProductId() {
-        return productId;
+    public SaleDetailKey getId() {
+        return id;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
-    }
-
-    public long getSaleId() {
-        return saleId;
-    }
-
-    public void setSaleId(long saleId) {
-        this.saleId = saleId;
+    public void setId(SaleDetailKey id) {
+        this.id = id;
     }
 
     public int getQuantity() {
@@ -84,8 +77,7 @@ public class SaleDetail {
     @Override
     public String toString() {
         return "SaleDetail{" +
-                "productId=" + productId +
-                ", saleId=" + saleId +
+                ", id=" + id +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 '}';

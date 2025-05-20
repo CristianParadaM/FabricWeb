@@ -14,7 +14,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private ProductTypeRepository productTypeRepository;
+    private ProductTypeService productTypeService;
 
     public List<Product> findAllProduct(){
         return productRepository.findAll();
@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     public Product saveProduct (Product product){
-        ProductType productType = productTypeRepository.findById(product.getProductTypeId()).orElse(null);
+        ProductType productType = productTypeService.getProductTypeById(product.getProductTypeId());
         product.setProductType(productType);
         return productRepository.save(product);
     }

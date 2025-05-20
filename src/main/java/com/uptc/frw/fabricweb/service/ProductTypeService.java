@@ -1,6 +1,7 @@
 package com.uptc.frw.fabricweb.service;
 
 import com.uptc.frw.fabricweb.model.Machine;
+import com.uptc.frw.fabricweb.model.Material;
 import com.uptc.frw.fabricweb.model.ProductType;
 import com.uptc.frw.fabricweb.repository.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,10 @@ import java.util.List;
 public class ProductTypeService {
     @Autowired
     private ProductTypeRepository productTypeRepository;
+    @Autowired
+    private MaterialService materialService;
+    @Autowired
+    private MachineService machineService;
 
     public List<ProductType> findAllProductType() {
         return productTypeRepository.findAll();
@@ -22,6 +27,10 @@ public class ProductTypeService {
     }
 
     public ProductType saveProductType(ProductType productType) {
+        Material material = materialService.getMaterialById(productType.getMaterialID());
+        Machine machine = machineService.getMachineById(productType.getNumberSerie());
+        productType.setMaterial(material);
+        productType.setMachine(machine);
         return productTypeRepository.save(productType);
     }
 

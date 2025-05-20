@@ -15,9 +15,9 @@ public class ProductType {
     @Column(name = "PRODUCT_TYPE")
     private String productType;
     @Column(name = "SERIE_NUMBER", insertable = false, updatable = false)
-    private String numberSerie;
+    private long numberSerie;
     @Column(name = "ID_MATERIAL", insertable = false, updatable = false)
-    private String materialID;
+    private long materialID;
     @JsonIgnore
     @OneToMany(mappedBy = "productType")
     private List<Product> productList;
@@ -30,7 +30,7 @@ public class ProductType {
     @JoinColumn(name = "ID_MATERIAL")
     private Material material;
 
-    public ProductType(long id, String productType, String numberSerie, String materialID) {
+    public ProductType(long id, String productType, long numberSerie, long materialID) {
         this.id = id;
         this.productType = productType;
         this.numberSerie = numberSerie;
@@ -55,19 +55,19 @@ public class ProductType {
         this.productType = productType;
     }
 
-    public String getNumberSerie() {
+    public long getNumberSerie() {
         return numberSerie;
     }
 
-    public void setNumberSerie(String numberSerie) {
+    public void setNumberSerie(long numberSerie) {
         this.numberSerie = numberSerie;
     }
 
-    public String getMaterialID() {
+    public long getMaterialID() {
         return materialID;
     }
 
-    public void setMaterialID(String materialID) {
+    public void setMaterialID(long materialID) {
         this.materialID = materialID;
     }
 

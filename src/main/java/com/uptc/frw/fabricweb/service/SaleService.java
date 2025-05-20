@@ -12,6 +12,8 @@ import java.util.List;
 public class SaleService {
     @Autowired
     private SaleRepository saleRepository;
+    @Autowired
+    private PersonService personService;
 
     public List<Sale> findAllSale() {
         return saleRepository.findAll();
@@ -22,6 +24,8 @@ public class SaleService {
     }
 
     public Sale saveSale(Sale sale) {
+        Person person = personService.getPersonById(sale.getPersonId());
+        sale.setPerson(person);
         return saleRepository.save(sale);
     }
 
