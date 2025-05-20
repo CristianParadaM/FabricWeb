@@ -1,13 +1,30 @@
 package com.uptc.frw.fabricweb.model;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "SALES")
 public class Sale {
+    @Id
+    @Column(name = "ID_SALE")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "SALE_DATE")
     private Date saleDate;
+    @Column(name = "ESTIMATED_DELIVERY_DATE")
     private Date estimateDeliveryDate;
+    @Column(name = "DELIVERY_DATE")
     private Date deliveryDate;
+    @Column(name = "ID_PERSON", insertable = false, updatable = false)
     private Long personId;
+    @ManyToOne
+    @JoinColumn(name = "ID_PERSON")
+    private Person person;
+    @OneToMany(mappedBy = "sale")
+    private List<SaleDetail> saleDetails;
 
     public Sale() {
     }
@@ -58,6 +75,22 @@ public class Sale {
 
     public void setPersonId(Long personId) {
         this.personId = personId;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public List<SaleDetail> getSaleDetails() {
+        return saleDetails;
+    }
+
+    public void setSaleDetails(List<SaleDetail> saleDetails) {
+        this.saleDetails = saleDetails;
     }
 
     @Override
