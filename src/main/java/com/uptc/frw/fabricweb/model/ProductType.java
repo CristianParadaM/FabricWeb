@@ -1,5 +1,6 @@
 package com.uptc.frw.fabricweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,12 +18,15 @@ public class ProductType {
     private String numberSerie;
     @Column(name = "ID_MATERIAL", insertable = false, updatable = false)
     private String materialID;
+    @JsonIgnore
     @OneToMany(mappedBy = "productType")
     private List<Product> productList;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "SERIE_NUMBER")
     private Machine machine;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "ID_MATERIAL")
     private Material material;
 

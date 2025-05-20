@@ -1,5 +1,6 @@
 package com.uptc.frw.fabricweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -22,8 +23,10 @@ public class Sale {
     private Long personId;
     @ManyToOne
     @JoinColumn(name = "ID_PERSON")
+    @JsonIgnore
     private Person person;
     @OneToMany(mappedBy = "sale")
+    @JsonIgnore
     private List<SaleDetail> saleDetails;
 
     public Sale() {

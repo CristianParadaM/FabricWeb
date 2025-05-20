@@ -10,7 +10,7 @@ import java.util.List;
 public class Machine {
     @Id
     @Column(name = "SERIE_NUMBER")
-    private String numberSerie;
+    private long numberSerie;
     @Column(name = "MARK")
     private String mark;
     @Column(name = "MODEL")
@@ -34,7 +34,7 @@ public class Machine {
     @OneToMany(mappedBy = "machine")
     private List<ProductType> productTypes;
 
-    public Machine(String numberSerie, String mark, String model, Date purchaseDate) {
+    public Machine(long numberSerie, String mark, String model, Date purchaseDate) {
         this.numberSerie = numberSerie;
         this.mark = mark;
         this.model = model;
@@ -43,11 +43,11 @@ public class Machine {
 
     public Machine() {}
 
-    public String getNumberSerie() {
+    public long getNumberSerie() {
         return numberSerie;
     }
 
-    public void setNumberSerie(String numberSerie) {
+    public void setNumberSerie(long numberSerie) {
         this.numberSerie = numberSerie;
     }
 
