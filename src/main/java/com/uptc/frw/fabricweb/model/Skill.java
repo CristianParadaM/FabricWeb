@@ -1,5 +1,6 @@
 package com.uptc.frw.fabricweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class Skill {
     @Column(name = "DESCRIPTION_SKILL")
     private String description;
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="PERSONS_SKILLS",
             joinColumns = @JoinColumn(name="ID_SKILL"),
