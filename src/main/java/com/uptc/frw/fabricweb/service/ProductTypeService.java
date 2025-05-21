@@ -28,7 +28,7 @@ public class ProductTypeService {
 
     public ProductType saveProductType(ProductType productType) {
         Material material = materialService.getMaterialById(productType.getMaterialID());
-        Machine machine = machineService.getMachineById(productType.getNumberSerie());
+        Machine machine = machineService.getMachineByNumberSerie(productType.getNumberSerie());
         productType.setMaterial(material);
         productType.setMachine(machine);
         return productTypeRepository.save(productType);
