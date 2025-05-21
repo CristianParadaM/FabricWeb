@@ -1,5 +1,6 @@
 package com.uptc.frw.fabricweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,6 +19,7 @@ public class Machine {
     @Column(name = "PURCHASE_DATE")
     private Date purchaseDate;
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="MACHINES_PERSONS",
             joinColumns = @JoinColumn(name="SERIE_NUMBER"),

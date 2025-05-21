@@ -1,5 +1,6 @@
 package com.uptc.frw.fabricweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -25,10 +26,13 @@ public class Person {
     @Column(name = "EMERGENCY_CONTACT_NAME")
     private String emergencyContact;
     @ManyToMany(mappedBy = "personSList" , cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<Skill> skillList;
     @ManyToMany(mappedBy = "personMList" , cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<Machine> machinesList;
-    @OneToMany(mappedBy = "", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Sale> salesList;
 
     public Person() {
