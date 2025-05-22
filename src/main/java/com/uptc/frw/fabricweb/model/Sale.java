@@ -26,7 +26,6 @@ public class Sale {
     @JsonIgnore
     private Person person;
     @OneToMany(mappedBy = "sale", cascade = CascadeType.REMOVE)
-    @JsonIgnore
     private List<SaleDetail> saleDetails;
 
     public Sale() {

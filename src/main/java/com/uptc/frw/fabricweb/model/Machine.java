@@ -18,21 +18,9 @@ public class Machine {
     private String model;
     @Column(name = "PURCHASE_DATE")
     private Date purchaseDate;
-    @ManyToMany
+    @ManyToMany(mappedBy = "machinesList")
     @JsonIgnore
-    @JoinTable(
-            name="MACHINES_PERSONS",
-            joinColumns = @JoinColumn(name="SERIE_NUMBER"),
-            inverseJoinColumns =@JoinColumn(name = "ID_PERSON")
-    )
     private List<Person> personMList;
-    @ManyToMany
-    @JoinTable(
-            name="PRODUCTS_MACHINES",
-            joinColumns = @JoinColumn(name="SERIE_NUMBER"),
-            inverseJoinColumns =@JoinColumn(name = "ID_PRODUCT")
-    )
-    private List<Product> productList ;
     @OneToMany(mappedBy = "machine", cascade = CascadeType.REMOVE)
     private List<ProductType> productTypes;
 
@@ -83,14 +71,6 @@ public class Machine {
 
     public void setPersonMList(List<Person> personMList) {
         this.personMList = personMList;
-    }
-
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
     }
 
     public List<ProductType> getProductTypes() {

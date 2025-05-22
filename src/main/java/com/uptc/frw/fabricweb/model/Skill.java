@@ -16,13 +16,8 @@ public class Skill {
     private String name;
     @Column(name = "DESCRIPTION_SKILL")
     private String description;
-    @ManyToMany
+    @ManyToMany(mappedBy = "skillList")
     @JsonIgnore
-    @JoinTable(
-            name="PERSONS_SKILLS",
-            joinColumns = @JoinColumn(name="ID_SKILL"),
-            inverseJoinColumns =@JoinColumn(name = "ID_PERSONA")
-    )
     private List<Person> personSList;
 
     public Skill() {}
