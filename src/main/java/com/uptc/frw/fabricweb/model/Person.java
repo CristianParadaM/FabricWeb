@@ -25,21 +25,28 @@ public class Person {
     private String phone;
     @Column(name = "EMERGENCY_CONTACT_NAME")
     private String emergencyContact;
-    @ManyToMany(mappedBy = "personSList" , cascade = CascadeType.PERSIST)
-    @JsonIgnore
+    @ManyToMany()
+    @JoinTable(
+            name="PERSONS_SKILLS",
+            joinColumns = @JoinColumn(name="ID_PERSON"),
+            inverseJoinColumns =@JoinColumn(name = "ID_SKILL")
+    )
     private List<Skill> skillList;
-    @ManyToMany(mappedBy = "personMList" , cascade = CascadeType.PERSIST)
-    @JsonIgnore
+    @ManyToMany()
+    @JoinTable(
+            name="MACHINES_PERSONS",
+            joinColumns = @JoinColumn(name="ID_PERSON"),
+            inverseJoinColumns =@JoinColumn(name = "SERIE_NUMBER")
+    )
     private List<Machine> machinesList;
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<Sale> salesList;
 
     public Person() {
     }
 
-    public Person(long id, String names, String lastnames, Date birthdate, String address, String phone, String emergencyContact) {
-        this.id = id;
+    public Person(String names, String lastnames, Date birthdate, String address, String phone, String emergencyContact) {
         this.names = names;
         this.lastnames = lastnames;
         this.birthdate = birthdate;

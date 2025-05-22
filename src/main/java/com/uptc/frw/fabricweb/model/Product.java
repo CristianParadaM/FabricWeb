@@ -18,9 +18,6 @@ public class Product {
     private String description;
     @Column(name = "ID_PRODUCT_TYPE", insertable = false, updatable = false)
     private long productTypeId;
-    @ManyToMany(mappedBy = "productList", cascade = CascadeType.PERSIST)
-    @JsonIgnore
-    private List<Machine> machineList;
     @ManyToOne
     @JoinColumn(name ="ID_PRODUCT_TYPE" )
     @JsonIgnore
@@ -68,14 +65,6 @@ public class Product {
 
     public void setProductTypeId(long productTypeId) {
         this.productTypeId = productTypeId;
-    }
-
-    public List<Machine> getMachineList() {
-        return machineList;
-    }
-
-    public void setMachineList(List<Machine> machineList) {
-        this.machineList = machineList;
     }
 
     public ProductType getProductType() {

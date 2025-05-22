@@ -1,5 +1,6 @@
 package com.uptc.frw.fabricweb.controller;
 
+import com.uptc.frw.fabricweb.dto.PersonDTO;
 import com.uptc.frw.fabricweb.model.Person;
 import com.uptc.frw.fabricweb.model.Product;
 import com.uptc.frw.fabricweb.service.PersonService;
@@ -17,7 +18,7 @@ public class PersonController {
     @GetMapping
     public List<Person> getAllPersons() {
         return personService.findAllPersons();
-    }   
+    }
 
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable long id) {
@@ -25,8 +26,8 @@ public class PersonController {
     }
 
     @PostMapping
-    public Person savePerson(@RequestBody Person Person) {
-        return personService.savePerson(Person);
+    public Person savePerson(@RequestBody PersonDTO personDTO) {
+        return personService.savePerson(personDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -34,8 +35,8 @@ public class PersonController {
         personService.deletePerson(id);
     }
 
-    @PutMapping
-    public Person upDatePerson(@RequestBody Person Person) {
-        return personService.updatePerson(Person);
+    @PutMapping("/{id}")
+    public Person upDatePerson(@PathVariable long id, @RequestBody PersonDTO person) {
+        return personService.updatePerson(id, person);
     }
 }
